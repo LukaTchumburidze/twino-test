@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 import org.twino.model.LoanApplication;
 
@@ -13,9 +14,12 @@ import java.util.Optional;
 @Repository
 public interface LoanApplicationRepository extends PagingAndSortingRepository<LoanApplication, Long> {
 
+
+    @PreAuthorize("hasRole('ROLE_OPERATOR')")
     @Override
     Iterable<LoanApplication> findAll(Sort sort);
 
+    @PreAuthorize("hasRole('ROLE_OPERATOR')")
     @Override
     Page<LoanApplication> findAll(Pageable pageable);
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Loan creation page</title>
+</head>
+<body>
+<body>
+<h1>Loan creation page</h1>
+<form th:action="@{/loan}" modelAttribute="loan" method="post">
+    <label for="firstName">First Name</label>:
+    <input type="text" id="firstName" name="firstName" autofocus="autofocus" /> <br />
+    <label for="lastName">Last Name</label>:
+    <input type="text" id="lastName" name="lastName" /> <br />
+    <label for="birthDate">Birth Date</label>:
+    <input type="date" id="birthDate" name="birthDate" /> <br />
+    <label for="salary">Salary</label>:
+    <input type="text" id="salary" name="salary" /> <br />
+    <label for="monthlyLiability">Monthly Liability</label>:
+    <input type="text" id="monthlyLiability" name="monthlyLiability" /> <br />
+    <label for="requestedAmount">Salary</label>:
+    <input type="text" id="requestedAmount" name="requestedAmount" /> <br />
+    <label for="requestedTerm">Requested Term</label>
+    <select id="requestedTerm" name="requestedTerm">
+        <option value="DAYS">DAYS</option>
+        <option value="MONTHS">MONTHS</option>
+    </select><br/>
+    <input type="submit" value="Register" />
+</form>
+</body>
+</body>
+</html>

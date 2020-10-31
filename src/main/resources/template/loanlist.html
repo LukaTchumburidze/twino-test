@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+<h1>List of Loans</h1>
+<br/>
+
+<table border="1">
+    <form th:action="@{/loan/list}" modelAttribute="customSort" method="post">
+        <label for="field">Field</label>
+        <select id="field" name="field">
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="birthDate">Birth Date</option>
+            <option value="salary">Salary</option>
+            <option value="monthlyLiability">Monthly Liability</option>
+            <option value="requestedAmount">Requested Amount</option>
+            <option value="requestedTerm">Requested Term</option>
+            <option value="verdict">Verdict</option>
+            <option value="score">Score</option>
+        </select><br/>
+
+        <label for="order">Order</label>
+        <select id="order" name="order">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+        <input type="submit" value="Submit Sort" />
+    </form>
+
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birth Date</th>
+        <th>Salary</th>
+        <th>Monthly Liability</th>
+        <th>Requested Amount</th>
+        <th>Requested Term</th>
+        <th>Verdict</th>
+        <th>score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="loanApp, iStat : ${loanApplicationList}"
+        th:style="${iStat.odd}? 'font-weight: bold;'"
+        th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <td th:text="${loanApp.id}" />
+        <td th:text="${loanApp.firstName}" />
+        <td th:text="${loanApp.lastName}" />
+        <td th:text="${loanApp.birthDate}" />
+        <td th:text="${loanApp.salary}" />
+        <td th:text="${loanApp.monthlyLiability}" />
+        <td th:text="${loanApp.requestedAmount}" />
+        <td th:text="${loanApp.requestedTerm}" />
+        <td th:text="${loanApp.verdict}" />
+        <td th:text="${loanApp.score}" />
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

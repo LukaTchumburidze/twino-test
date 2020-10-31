@@ -2,10 +2,13 @@ package org.twino.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Random;
 
 @Entity
 @Data
@@ -27,32 +30,40 @@ public class LoanApplication {
     private Long id;
 
     @NotEmpty
+    @Column(updatable = false)
     private String firstName;
     @NotEmpty
+    @Column(updatable = false)
     private String lastName;
-    @NotEmpty
+    @NotNull
+    @Column(updatable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
 
-    @NotEmpty
-    private double salary;
-    @NotEmpty
-    private double monthlyLiability;
+    @NotNull
+    @Column(updatable = false)
+    private Double salary;
+    @NotNull
+    @Column(updatable = false)
+    private Double monthlyLiability;
 
-    @NotEmpty
-    private double requestedAmount;
-    @NotEmpty
+    @NotNull
+    @Column(updatable = false)
+    private Double requestedAmount;
     @Enumerated
+    @Column(updatable = false)
     private Term requestedTerm;
 
     @Enumerated
     private Verdict verdict;
 
-    @JsonIgnore
-    private double score;
+
+    @Column(updatable = false)
+    private Double score;
 
     @PrePersist
     private void calculateScore () {
-        this.score = 5;
+        this.score = salary;
         // Actual score logic here
 
         this.verdict = Verdict.REJECTED;
